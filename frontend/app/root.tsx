@@ -8,14 +8,15 @@ import {
   ScrollRestoration,
   useRouteLoaderData,
 } from '@remix-run/react';
-
 import { Footer } from './components/ui/Footer';
 import { Navbar } from './components/ui/Navbar';
 import logo from './routes/_assets/logo-automecanik.png';
-import stylesheet from './global.css?url';
 import { getOptionalUser } from "./server/auth.server";
 
+// Importation du fichier global.css depuis `app`
+import stylesheet from './global.css?url'; // Correctement placé après les imports des composants
 
+// CSS global pour Tailwind
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ];
@@ -43,6 +44,7 @@ export const useOptionalUser = () => {
   return data?.user ?? null;
 };
 
+// Déclaration du module pour le contexte Remix
 declare module '@remix-run/node' {
   interface AppLoadContext {
     remixService?: RemixService;
@@ -50,6 +52,7 @@ declare module '@remix-run/node' {
   }
 }
 
+// Fonction Layout principale
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
@@ -61,7 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-screen flex flex-col">
         <Navbar logo={logo} />
-        <main className="flex-grow">{children}</main>
+        {children}
         <Footer />
         <ScrollRestoration />
         <Scripts />
@@ -70,6 +73,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Fonction App principale
 export default function App() {
   return <Layout><Outlet /></Layout>;
 }

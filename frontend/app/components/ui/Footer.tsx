@@ -8,7 +8,7 @@ export const Footer = () => {
             <FooterLinkItem href='/offreurs' icon={<Users />} label='Offreurs' />
             <FooterLinkItem href='/demandes' icon={<Plus />} label='Demandes' />
             <FooterLinkItem href='/favoris' icon={<Star />} label='Favoris' />
-            <FooterLinkItem href='/messages' icon={<Mail />} label='Message' />
+            <FooterLinkItem href='/messages' icon={<Mail />} label='Messages' />
         </footer>
     );
 };
@@ -30,7 +30,7 @@ const FooterLinkItem = ({
             to={href}
         >
             {icon}
-            <span className="text-bleu">{label}</span>
+            <span>{label}</span>
         </NavLink>
     );
 };
