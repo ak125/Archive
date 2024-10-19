@@ -2,13 +2,15 @@ import { NavLink } from '@remix-run/react';
 import { Mail, Plus, Search, Star, Users } from 'lucide-react';
 
 export const Footer = () => {
-    return (<footer className='overflow-x-auto px-3 py-2 flex items-center justify-between gap-4 mt-auto bg-lightTurquoise'>
-        <FooterLinkItem href='/' icon={<Search />} label='Rechercher' />
-        <FooterLinkItem href='/' icon={<Users />} label='Offreurs' />
-        <FooterLinkItem href='/' icon={<Plus />} label='Demandes' />
-        <FooterLinkItem href='/' icon={<Star />} label='Favoris' />
-        <FooterLinkItem href='/' icon={<Mail />} label='Message' />
-    </footer>)
+    return (
+        <footer className='overflow-x-auto px-3 py-2 flex items-center justify-between gap-4 mt-auto bg-lightTurquoise'>
+            <FooterLinkItem href='/rechercher' icon={<Search />} label='Rechercher' />
+            <FooterLinkItem href='/offreurs' icon={<Users />} label='Offreurs' />
+            <FooterLinkItem href='/demandes' icon={<Plus />} label='Demandes' />
+            <FooterLinkItem href='/favoris' icon={<Star />} label='Favoris' />
+            <FooterLinkItem href='/messages' icon={<Mail />} label='Message' />
+        </footer>
+    );
 };
 
 const FooterLinkItem = ({
@@ -27,7 +29,8 @@ const FooterLinkItem = ({
             }
             to={href}
         >
-            {icon} <span className="text-bleu">{label}</span>
+            {icon}
+            <span className="text-bleu">{label}</span>
         </NavLink>
     );
 };
