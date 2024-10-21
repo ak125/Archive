@@ -10,6 +10,7 @@ export class AuthController {
     login(
         @Query('redirectTo') redirectTo: string,
     ) {
+        console.log('Utilisateur connecté, redirection en cours...');
         return {
             url: redirectTo
         }
@@ -21,16 +22,16 @@ export class AuthController {
         @Res() response: Response,
         @Next() next: NextFunction,
     ) {
-        // this will ensure that re-using the old session id
-        // does not have a logged in user
+        console.log('Déconnexion de l’utilisateur en cours...');
         request.logOut(function (err) {
             if (err) {
+                console.error('Erreur lors de la déconnexion:', err);
                 return next(err);
             }
-            // Ensure the session is destroyed and the user is redirected.
             request.session.destroy(() => {
-                response.clearCookie('connect.sid'); // The name of the cookie where express/connect stores its session_id
-                response.redirect('/'); // Redirect to website after logout
+                console.log('Session détruite, utilisateur déconnecté.');
+                response.clearCookie('connect.sid');
+                response.redirect('/');
             });
         });
     }
